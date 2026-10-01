@@ -4,5 +4,4 @@ jobs:
   job-1:
     runs-on: ubuntu-latest
     steps:
-      - name: test-step
-        run: echo "job-1 is completed"
+      - run: echo "job-1 is completed"
