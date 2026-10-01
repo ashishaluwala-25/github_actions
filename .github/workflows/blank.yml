@@ -5,3 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "job-1 is completed"
+      - run: pwd
+      - run: ls
+      - run: du -h
