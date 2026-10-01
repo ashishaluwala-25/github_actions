@@ -1,28 +1,22 @@
-name: test
+name: test-inputs
 on: 
-  push:
-    branches:
-      - main
-      - feature
-      - releases
-  pull_request: 
-    types: 
-      - opened
-    branches: 
-      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Select Environment
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - test
+          - uat
+      artifact_tag:
+        description: select git tag to deploy
+        required: true
 jobs:
-  build:
+  test-input:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - run: du -h
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: test
-        run: echo "test ${{ secrets.test }}"
-      - run: echo "TEST ${{ vars.TEST }}"
+      - name: deploy the application
+        run: echo " deploying the ${{ inputs.artifact_tag}} app into ${{ inputs.environment}}"
